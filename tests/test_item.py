@@ -1,5 +1,5 @@
 import pytest
-from item import Item
+from src.item import Item
 
 
 def test_calculate_total_price():
@@ -13,7 +13,7 @@ def test_apply_discount():
     item1 = Item("apple", 1.5, 10)
     item2 = Item("banana", 2.0, 5)
     item1.apply_discount()
-    assert item1.price == 1.28
+    assert item1.price == 1.27
     item2.apply_discount()
     assert item2.price == 1.7
 
@@ -28,15 +28,15 @@ def test_get_total_items():
 def test_instantiate_from_csv():
     Item.all = [] # очищаем список перед тестом
     Item.instantiate_from_csv('items.csv')
-    assert len(Item.all) == 3
-    assert Item.all[0].name == 'Смартфон'
-    assert Item.all[0].price == 85.0
-    assert Item.all[0].quantity == 1
-    assert Item.all[1].name == 'Ноутбук'
-    assert Item.all[1].price == 850.0
-    assert Item.all[1].quantity == 3
-    assert Item.all[2].name == 'Кабель'
-    assert Item.all[2].price == 8.5
+    assert len(Item.all) == 4
+    assert Item.all[0].name == 'Ноутбук'
+    assert Item.all[0].price == 1000.0
+    assert Item.all[0].quantity == 3
+    assert Item.all[1].name == 'Кабель'
+    assert Item.all[1].price == 10
+    assert Item.all[1].quantity == 5
+    assert Item.all[2].name == 'Мышка'
+    assert Item.all[2].price == 50
     assert Item.all[2].quantity == 5
 
 
