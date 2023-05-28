@@ -40,5 +40,15 @@ def test_instantiate_from_csv():
     assert Item.all[2].quantity == 5
 
 
+def test_item_repr():
+    i = Item('test', 10.0, 5)
+    assert repr(i) == "Item('test', 10.0, 5)"
+
+
+def test_item_str():
+    i = Item('test', 10.0, 5)
+    assert str(i) == 'test'
+
+
 if __name__ == '__main__':
     pytest.main()

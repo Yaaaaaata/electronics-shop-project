@@ -47,6 +47,12 @@ class Item:
     def name(self):
         return self.__name
 
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
+
+    def __str__(self) -> str:
+        return self.__name
+
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
@@ -98,5 +104,3 @@ class Item:
         :return: Число.
         """
         return float(value.replace(',', '.'))
-
-
