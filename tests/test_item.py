@@ -50,5 +50,15 @@ def test_item_str():
     assert str(i) == 'test'
 
 
+def test_add():
+    item1 = Item("item1", 10, 3)
+    item2 = Item("item2", 20, 5)
+
+    assert item1.__add__(item2) == 8
+
+    with pytest.raises(TypeError):
+        item1.__add__("not an item")
+
+
 if __name__ == '__main__':
     pytest.main()
