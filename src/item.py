@@ -104,3 +104,9 @@ class Item:
         :return: Число.
         """
         return float(value.replace(',', '.'))
+
+    def __add__(self, other):
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        else:
+            raise TypeError("Невозможно выполнить операцию сложения для объектов разных классов.")
