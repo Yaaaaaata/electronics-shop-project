@@ -18,7 +18,7 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        self.__name = name if len(name) <= 10 else ''
+        self.__name = name # if len(name) <= 10 else ''
         self.price = price
         self.quantity = quantity
         Item.all.append(self)
