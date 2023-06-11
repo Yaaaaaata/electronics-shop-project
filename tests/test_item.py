@@ -1,5 +1,6 @@
 import pytest
-from src.item import Item
+import os
+from src.item import Item, InstantiateCSVError
 
 
 def test_calculate_total_price():
@@ -38,6 +39,11 @@ def test_instantiate_from_csv():
     assert Item.all[2].name == 'Мышка'
     assert Item.all[2].price == 50
     assert Item.all[2].quantity == 5
+
+
+def test_instantiate_csv_error():
+    error = InstantiateCSVError("Test error message")
+    assert str(error) == "Test error message"
 
 
 def test_item_repr():
