@@ -3,6 +3,10 @@ import os
 import math
 
 
+class InstantiateCSVError(Exception):
+    pass
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -85,15 +89,21 @@ class Item:
         """
         dir_path = os.path.dirname(os.path.realpath(__file__))
         file_path = os.path.join(dir_path, filename)
-        with open(file_path, newline='', encoding='windows-1251') as f:
-            reader = csv.DictReader(f)
-            for i, row in enumerate(reader):
-                if i == 0:
-                    continue
-                name = row['name']
-                price = cls.string_to_number(row['price'])
-                quantity = int(row['quantity'])
-                item = cls(name, price, quantity)
+        try:
+            with open(file_path, newline='', encoding='windows-1251') as f:
+                reader = csv.DictReader(f)
+                for i, row in enumerate(reader):
+                    if i == 0:
+                        continue
+                    try:
+                        name = row['name']
+                        price = cls.string_to_number(row['price'])
+                        quantity = int(row['quantity'])
+                        item = cls(name, price, quantity)
+                    except KeyError:
+                        raise InstantiateCSVError("Файл item.csv поврежден")
+        except FileNotFoundError:
+            raise FileNotFoundError("Отсутствует файл item.csv")
 
     @staticmethod
     def string_to_number(value: str) -> float:
